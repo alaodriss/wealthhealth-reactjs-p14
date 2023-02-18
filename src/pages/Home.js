@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Cemploye from "../components/Form";
 import styled from "styled-components";
 import image from '../assets/images/bg.jpg'
+
 const HomeStyle = styled.div`
   display: flex;
   align-items: center;

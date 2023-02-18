@@ -18,6 +18,7 @@ const DatePikerStyle = styled.div`
 const Datepiker = ({ dataio }) => {
   const [startDate, setStartDate] = useState(new Date());
 
+
   const newData = dataio + startDate.toLocaleDateString();
 
   console.log(newData);
