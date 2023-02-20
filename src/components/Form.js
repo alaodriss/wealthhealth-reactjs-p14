@@ -29,7 +29,7 @@ const FM = styled.div`
   }
 
   label {
-    font-family: monospace;
+    font-family: "Roboto", sans-serif;
     margin-right: 5px;
     margin-left: 23px;
     font-weight: 900;
@@ -85,7 +85,7 @@ const FM = styled.div`
     cursor: pointer;
     display: inline-flex;
     fill: #000;
-    font-family: Inter, sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 16px;
     font-weight: 600;
     height: 48px;
@@ -103,13 +103,21 @@ const FM = styled.div`
     touch-action: manipulation;
   }
 
-  .button-59:focus {
-    color: #171e29;
+
+  .popupTitle{
+    text-align: center;
+    color: steelblue;
+    font-size: 24px;
+    font-family: "Roboto", sans-serif;
+    border-bottom: inset;
   }
+  .button-59:focus {
+    color:  #066416;
+    }
 
   .button-59:hover {
-    border-color: #06f;
-    color: #06f;
+    border-color: #066416;
+    color:  #066416;
     fill: #06f;
   }
 
@@ -249,8 +257,7 @@ const Cemployee = () => {
                   X
                 </button>
                 <p className="popupTitle">
-                  Merci pour vous réponses. <br /> Vous pouvez continuer vers
-                  l'offre qui vous correspond au mieux.
+                Employee Created!
                 </p>
               </div>
             </Modal>

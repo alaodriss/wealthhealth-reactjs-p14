@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components/macro'
+import React from "react";
+import styled from "styled-components/macro";
 
 const ModalWrapper = styled.div`
   .modalBackground {
@@ -15,7 +15,7 @@ const ModalWrapper = styled.div`
   }
   .modalContainer {
     position: relative;
-    width: 75rem;
+    width: 32rem;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     padding: 25px;
@@ -24,21 +24,18 @@ const ModalWrapper = styled.div`
   }
   .btn-close {
     position: absolute;
-    right: 1.5rem;
-    top: 1.5rem;
+    right: -0.5rem;
+    top: -0.5rem;
   }
-
-`
+`;
 
 function Modal({ children }) {
   return (
     <ModalWrapper>
       <div className="modalBackground">
-        <div className="modalContainer">
-        {children}
-        </div>
+        <div className="modalContainer">{children}</div>
       </div>
     </ModalWrapper>
-  )
+  );
 }
-export default Modal
+export default Modal;

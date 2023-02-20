@@ -1,64 +1,94 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Cemploye from "../components/Form";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import image from '../assets/images/bg.jpg'
+import Logo from "../assets/images/logo.jpg";
 
 const HomeStyle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
 
-  h1 {
-    text-align: center;
-    font-family: monospace;
-    font-size: 30px;
-  }
-  a {
-    font-family: monospace;
-    font-size: 14px;
-  }
-  h2 {
-    text-align: center;
-    font-family: monospace;
-    font-size: 20px;
-  }
+  .title {
+    margin: 4em;
+    font-size: 1.2rem;
+    font-family: "Roboto", sans-serif;
+    letter-spacing: 0.2em;
+    text-indent: 0.3em;
+    color: #181818;
 
-  #link-container {
-    text-align: center;
-}
-#link {
-    background: black;
-    color: white;
-    display: inline-block;
-    padding: 10px;
-}
-.home_create_employee::before{
-    content: '';
-    background: url(${image}) no-repeat center center/cover;
+    span {
+      color: #066416;
+    }
+  }
+  .title_1 {
+    font-size: 0.8rem;
+    font-family: "Roboto", sans-serif;
+    letter-spacing: 0.2em;
+    text-indent: 0.3em;
+    color: #181818;
+  }
+  .home_create_employee::before {
+    content: "";
+    background: url(${Logo}) no-repeat center center;
     position: absolute;
-    opacity: 0.3;
     top: 0px;
     left: 0px;
     width: 100vw;
     height: 100vh;
     z-index: -1;
-}
+  }
+  .block {
+    position: relative;
+  }
+  .block_2 {
+    position: absolute;
+    top: 270%;
+    left: 25%;
+  }
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+  }
+  li {
+    list-style-type: none;
+    margin: 30px 0;
+    border-radius: 50px 50px;
+    background: antiquewhite;
+    padding: 1rem 2rem;
+  }
+  a {
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-family: "Roboto", sans-serif;
+    letter-spacing: 0.2em;
+    color: #066416
+  }
 `;
 
 const Home = () => {
   return (
     <HomeStyle>
-      <div className="home_create_employee">
-        <h1 className="logo">HRnet</h1>
-        <div id="link-container">
-          <Link  id="link" to="/">
-            View Current Employees
-          </Link>
+      <div className="home_create_employee"></div>
+      <di className="block">
+        <div className="block_1">
+          <p className="title">
+            HRNet the app that manage <span> your employees </span>{" "}
+          </p>
         </div>
-        <h2>Create Employee</h2>
-        <Cemploye />
-      </div>
+        <div className="block_2">
+          <p className="title_1">Join us in creating your employee list ...</p>
+          <ul>
+            <li>
+              <NavLink to="/createemployee"> Create </NavLink>
+            </li>
+            <li>
+              <NavLink to="/viewemployees"> View </NavLink>
+            </li>
+          </ul>
+        </div>
+      </di>
     </HomeStyle>
   );
 };

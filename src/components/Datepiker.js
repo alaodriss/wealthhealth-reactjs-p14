@@ -12,7 +12,8 @@ const DatePikerStyle = styled.div`
     width: none;
   }
 
-  font-family: monospace;
+  font-family: "Roboto", sans-serif;
+
 `;
 
 const Datepiker = ({ dataio }) => {
