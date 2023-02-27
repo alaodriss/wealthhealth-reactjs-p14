@@ -2,7 +2,13 @@ import React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import states from "./States";
-import Datepiker from "./Datepiker";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+// import Datepiker from "./Datepiker";
+import moment from "moment";
+
+import { useDispatch } from "react-redux";
+import { setUserData } from "../feature/UserSalice";
 
 import styled from "styled-components";
 import Modal from "./Modal";
@@ -106,7 +112,7 @@ const FM = styled.div`
 
   .popupTitle{
     text-align: center;
-    color: steelblue;
+    color: #066416;
     font-size: 24px;
     font-family: "Roboto", sans-serif;
     border-bottom: inset;
@@ -134,9 +140,26 @@ const FM = styled.div`
   }
 `;
 
+const DatePikerStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-direction: row;
+  .react-datepicker-wrapper {
+    display: block;
+    width: none;
+  }
+
+  font-family: "Roboto", sans-serif;
+
+  .react-datepicker__time-list-item--disabled {
+    display: none;
+  }
+`;
+
 const Cemployee = () => {
   const {
     register,
+
     formState: { errors },
     handleSubmit,
   } = useForm();
@@ -144,11 +167,33 @@ const Cemployee = () => {
   const [data, setData] = useState("");
   const [openModal, setOpenModal] = useState(false);
 
+  //variables for store the currentdata for the input startDate, and current data -18 for dateOfBirth input
+  // const datebirth = new Date(Date.now()).setFullYear(
+  //   new Date(Date.now()).getFullYear() - 18
+  // );
+  // const todayDate = new Date(Date.now()).setFullYear(
+  //   new Date(Date.now()).getFullYear()
+  // );
+  const [DateBirth, setDateBirth] = useState();
+  const [startDate, setStartDate] = useState();
+
+  const dispatch = useDispatch();
+
   const onSubmit = (data) => {
+    const newdateOfBirth = moment(DateBirth).format("DD-MM-YYYY");
+    const newDateOfStart = moment(startDate).format("DD-MM-YYYY");
+    const dataEmployee = {
+      ...data,
+      dateOfBirth: newdateOfBirth,
+      dateOfStart: newDateOfStart,
+    };
+    //i dispatch the recovered data to the redux store
     setOpenModal(true);
-    setData(JSON.stringify(data));
+    setData(JSON.stringify(dataEmployee));
+    console.log(dispatch(setUserData(dataEmployee)));
   };
 
+  console.log(data);
   const handleChange = (event) => {
     setData({ data: event.target.value });
     console.log(event);
@@ -182,7 +227,55 @@ const Cemployee = () => {
             </div>
           </div>
 
-          <Datepiker dataio={data} />
+          <DatePikerStyle>
+            <div>
+              <label>Date of Birth</label>
+              {/* <Controller
+                name="dateOfBirth"
+                control={control}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <DatePicker
+                    {...field}
+                    selected={field.value}
+                    dateFormat="yyyy/MM/dd"
+                    // {dayjs(date).format('MMMM Do YYYY, h:mm:ss a')}
+                    onChange={(date) => field.onChange(date)}
+                  />
+                )}
+              /> */}
+
+              <DatePicker
+                for={"dateofBirth"}
+                selected={DateBirth}
+                name={"dateOfBirth"}
+                onChange={(date) => {
+                  setDateBirth(Date.parse(date));
+                }}
+                className={"form-control"}
+                value={DateBirth}
+                dateFormat={"dd/MM/yyyy"}
+                showYearDropdown
+              />
+
+              {errors.dateofbirth && <span>This field is required</span>}
+            </div>
+            <div>
+              <label>Start Date</label>
+             <DatePicker
+                for={"dateofStart"}
+                className="form-control"
+                dateFormat="dd-MM-yyyy"
+                name="dateOfStart"
+                selected={startDate}
+                showYearDropdown
+                onChange={(date) => setStartDate(Date.parse(date))}
+                //{...register("dateOfStart")}
+                innerRef={register}
+              />
+              {errors.datestart && <span>This field is required</span>}
+            </div>
+          </DatePikerStyle>
 
           <div className="container_address">
             <fieldset>
@@ -243,7 +336,6 @@ const Cemployee = () => {
             <option value="Rh">Human Resources</option>
             <option value="Legal">Legal</option>
           </select>
-          <p>{data}</p>
           <input className="button-59" type="submit" value="Save" />
           {openModal && (
             <Modal>
@@ -256,9 +348,7 @@ const Cemployee = () => {
                 >
                   X
                 </button>
-                <p className="popupTitle">
-                Employee Created!
-                </p>
+                <p className="popupTitle">Employee Created!</p>
               </div>
             </Modal>
           )}

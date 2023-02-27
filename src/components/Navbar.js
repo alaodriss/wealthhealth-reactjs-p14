@@ -27,8 +27,7 @@ const NavBar = styled.div`
     transform: translateY(-2px);
   }
 
-  .navbar__link--active {
-    border-bottom: 3px solid #29b6f6;
+  .isActive {
     transition: border-bottom 0.5s ease-in-out;
   }
 `;
@@ -39,23 +38,19 @@ const Navbar = () => {
       <div>
         <nav className="navbar">
           <NavLink
-            exact
-            activeClassName="navbar__link--active"
-            className="navbar__link"
+            className="navbar__link isActive"
             to="/"
           >
             Home
           </NavLink>
           <NavLink
-            activeClassName="navbar__link--active"
-            className="navbar__link"
+            className="navbar__link isActive"
             to="/createemployee"
           >
             Create Employee
           </NavLink>
           <NavLink
-            activeClassName="navbar__link--active"
-            className="navbar__link"
+            className="navbar__link isActive"
             to="/viewemployees"
           >
             View Current Employees

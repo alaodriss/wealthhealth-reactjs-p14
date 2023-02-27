@@ -39,9 +39,10 @@ const HomeStyle = styled.div`
   }
   .block {
     position: relative;
+    bottom: 30px;
   }
   .block_2 {
-    position: absolute;
+    position: relative;
     top: 270%;
     left: 25%;
   }
@@ -50,6 +51,9 @@ const HomeStyle = styled.div`
     justify-content: center;
     align-items: center;
     gap: 30px;
+    position: absolute;
+    top: 288px;
+
   }
   li {
     list-style-type: none;
@@ -70,8 +74,8 @@ const HomeStyle = styled.div`
 const Home = () => {
   return (
     <HomeStyle>
-      <div className="home_create_employee"></div>
-      <di className="block">
+      <div className="home_create_employee">
+      <div className="block">
         <div className="block_1">
           <p className="title">
             HRNet the app that manage <span> your employees </span>{" "}
@@ -88,7 +92,8 @@ const Home = () => {
             </li>
           </ul>
         </div>
-      </di>
+        </div>
+      </div>
     </HomeStyle>
   );
 };
