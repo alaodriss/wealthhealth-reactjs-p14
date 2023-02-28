@@ -14,19 +14,6 @@ const TableEm = styled.div`
 
 
     // // mock data - strongly typed if you are using TypeScript (optional, but recommended)
-    // const data = [
-    //   {
-    //     firstName: "John",
-    //     lastName: "Doe",
-    //     dateOfBirth: "06-10-92",
-    //     startDate: "01-22-2023",
-    //     street: "20, Test street",
-    //     city: "New York",
-    //     state: "Manhattan",
-    //     zipcode: "10451",
-    //     department: "Marketing",
-    //   },
-    // ];
 
 function MTable() {
 
@@ -91,7 +78,7 @@ function MTable() {
         <MaterialReactTable
           columns={columns}
           data={data.users}
-          enableGlobalFilter={false} //turn off a feature
+          enableGlobalFilter={true}
         />
       </div>
     </TableEm>

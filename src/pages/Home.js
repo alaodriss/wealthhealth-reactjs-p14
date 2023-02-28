@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "../assets/images/logo.jpg";
+import Footer from "../components/Footer";
 
 const HomeStyle = styled.div`
   display: flex;
@@ -42,9 +43,7 @@ const HomeStyle = styled.div`
     bottom: 30px;
   }
   .block_2 {
-    position: relative;
-    top: 270%;
-    left: 25%;
+    margin: -2rem 13rem;
   }
   ul {
     display: flex;
@@ -52,8 +51,7 @@ const HomeStyle = styled.div`
     align-items: center;
     gap: 30px;
     position: absolute;
-    top: 288px;
-
+    top: 383px;
   }
   li {
     list-style-type: none;
@@ -73,6 +71,7 @@ const HomeStyle = styled.div`
 
 const Home = () => {
   return (
+    <> 
     <HomeStyle>
       <div className="home_create_employee">
       <div className="block">
@@ -95,6 +94,8 @@ const Home = () => {
         </div>
       </div>
     </HomeStyle>
+    <Footer />
+    </>
   );
 };
 
