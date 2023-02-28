@@ -30,9 +30,7 @@ const TableEm = styled.div`
 
 function MTable() {
 
-  const dataEmployees = useSelector(state => ({...state.user}));
-
-  console.log(dataEmployees)
+   const data = useSelector(state => state.users);
 
   //column definitions - strongly typed if you are using TypeScript (optional, but recommended)
   const columns = useMemo(
@@ -85,15 +83,14 @@ function MTable() {
     ],
     []
   );
+  console.log(data)
 
   return (
     <TableEm>
       <div  className="table">
         <MaterialReactTable
           columns={columns}
-          data={dataEmployees}
-          //   enableRowSelection //enable some features
-          enableColumnOrdering
+          data={data.users}
           enableGlobalFilter={false} //turn off a feature
         />
       </div>

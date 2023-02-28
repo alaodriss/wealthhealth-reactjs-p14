@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import states from "./States";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-// import Datepiker from "./Datepiker";
 import moment from "moment";
 
 import { useDispatch } from "react-redux";
@@ -159,7 +158,6 @@ const DatePikerStyle = styled.div`
 const Cemployee = () => {
   const {
     register,
-
     formState: { errors },
     handleSubmit,
   } = useForm();
@@ -168,12 +166,7 @@ const Cemployee = () => {
   const [openModal, setOpenModal] = useState(false);
 
   //variables for store the currentdata for the input startDate, and current data -18 for dateOfBirth input
-  // const datebirth = new Date(Date.now()).setFullYear(
-  //   new Date(Date.now()).getFullYear() - 18
-  // );
-  // const todayDate = new Date(Date.now()).setFullYear(
-  //   new Date(Date.now()).getFullYear()
-  // );
+
   const [DateBirth, setDateBirth] = useState();
   const [startDate, setStartDate] = useState();
 
@@ -185,15 +178,14 @@ const Cemployee = () => {
     const dataEmployee = {
       ...data,
       dateOfBirth: newdateOfBirth,
-      dateOfStart: newDateOfStart,
+      startDate: newDateOfStart,
     };
-    //i dispatch the recovered data to the redux store
+    // //i dispatch the recovered data to the redux store
     setOpenModal(true);
     setData(JSON.stringify(dataEmployee));
-    console.log(dispatch(setUserData(dataEmployee)));
+    dispatch(setUserData(dataEmployee));
   };
 
-  console.log(data);
   const handleChange = (event) => {
     setData({ data: event.target.value });
     console.log(event);
@@ -230,50 +222,26 @@ const Cemployee = () => {
           <DatePikerStyle>
             <div>
               <label>Date of Birth</label>
-              {/* <Controller
-                name="dateOfBirth"
-                control={control}
-                rules={{ required: true }}
-                render={({ field }) => (
-                  <DatePicker
-                    {...field}
-                    selected={field.value}
-                    dateFormat="yyyy/MM/dd"
-                    // {dayjs(date).format('MMMM Do YYYY, h:mm:ss a')}
-                    onChange={(date) => field.onChange(date)}
-                  />
-                )}
-              /> */}
-
               <DatePicker
-                for={"dateofBirth"}
                 selected={DateBirth}
                 name={"dateOfBirth"}
                 onChange={(date) => {
                   setDateBirth(Date.parse(date));
                 }}
-                className={"form-control"}
                 value={DateBirth}
                 dateFormat={"dd/MM/yyyy"}
                 showYearDropdown
               />
-
-              {errors.dateofbirth && <span>This field is required</span>}
             </div>
             <div>
               <label>Start Date</label>
-             <DatePicker
-                for={"dateofStart"}
-                className="form-control"
-                dateFormat="dd-MM-yyyy"
-                name="dateOfStart"
+              <DatePicker
                 selected={startDate}
-                showYearDropdown
+                name={"startDate"}
                 onChange={(date) => setStartDate(Date.parse(date))}
-                //{...register("dateOfStart")}
-                innerRef={register}
+                dateFormat={"dd/MM/yyyy"}
+                showYearDropdown
               />
-              {errors.datestart && <span>This field is required</span>}
             </div>
           </DatePikerStyle>
 
@@ -284,7 +252,7 @@ const Cemployee = () => {
                 <div className="step_2_2">
                   <label>Street </label>
                   <input
-                    {...register("Street", { required: true })}
+                    {...register("street", { required: true })}
                     aria-invalid={errors.Street ? "true" : "false"}
                   />
                   {errors.Street?.type === "required" && (
@@ -306,7 +274,7 @@ const Cemployee = () => {
                 <div className="step_3_3">
                   <label className="labelSelect">State</label>
                   <select
-                    {...register("State", { required: true })}
+                    {...register("state", { required: true })}
                     onChange={(e) => handleChange}
                   >
                     {states.map((state) => (
@@ -317,7 +285,7 @@ const Cemployee = () => {
                 <div className="step_3_3">
                   <label>Zip Code </label>
                   <input
-                    {...register("zip", { required: true })}
+                    {...register("zipcode", { required: true })}
                     aria-invalid={errors.zip ? "true" : "false"}
                   />
                   {errors.zip?.type === "required" && (
@@ -327,9 +295,8 @@ const Cemployee = () => {
               </div>
             </fieldset>
           </div>
-
           <label className="labelSelect">Department</label>
-          <select {...register("Department", { required: true })}>
+          <select {...register("department", { required: true })}>
             <option value="Sales">Sales</option>
             <option value="Marketing">Marketing</option>
             <option value="Engineering">Engineering</option>
